@@ -13,7 +13,7 @@ jobs:
 
     - name: Build with Buildozer Docker
       run: |
-        docker run --rm -e BUILDOZER_ALLOW_INSTALL_AS_ROOT=1 -v ${{ github.workspace }}:/home/user/hostpython kivy/buildozer android debug
+        docker run --rm -e BUILDOZER_ALLOW_INSTALL_AS_ROOT=1 -v ${{ github.workspace }}:/home/user/hostcwd --entrypoint /bin/bash kivy/buildozer:latest -c "yes | buildozer android debug"
         sudo chown -R $USER:$USER .
 
     - name: Upload APK Artifact
