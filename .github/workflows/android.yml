@@ -1,4 +1,4 @@
-name: Build Android APK
+yaml: Build Android APK
 
 on:
   push:
@@ -13,8 +13,12 @@ jobs:
 
     - name: Build with Buildozer Docker
       run: |
-        export BUILDOZER_ALLOW_INSTALL_AS_ROOT=1
-        docker run --rm -v ${{ github.workspace }}:/workdir -w /workdir kivy/buildozer:latest android debug
+        docker run --rm \
+          -e BUILDOZER_ALLOW_INSTALL_AS_ROOT=1 \
+          -v ${{ github.workspace }}:/workdir \
+          -w /workdir \
+          kivy/buildozer:latest android debug
+        sudo chown -R $USER:$USER .
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
