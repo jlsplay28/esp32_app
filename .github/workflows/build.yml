@@ -27,4 +27,3 @@ jobs:
       with:
         name: esp32app-apk
         path: bin/*.apk
-        
