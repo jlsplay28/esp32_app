@@ -1,5 +1,4 @@
 [app]
-
 title = ESP32 App
 package.name = esp32app
 package.domain = org.esp32
