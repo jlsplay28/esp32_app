@@ -11,14 +11,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: Build with Buildozer Docker
-      run: |
-        docker run --rm -e BUILDOZER_ALLOW_INSTALL_AS_ROOT=1 -v ${{ github.workspace }}:/workdir -w /workdir --entrypoint /bin/bash kivy/buildozer:latest -c "yes | buildozer android debug"
-        sudo chown -R $USER:$USER .
-
-    - name: Upload APK Artifact
-      uses: actions/upload-artifact@v4
+    - name: Build with Buildozer
+      uses: ArtemSydoryk/buildozer-action@v1.2
       with:
-        name: esp32app-apk
-        path: bin/*.apk
+        command: buildozer android debug
+        buildozer_version: master
         
