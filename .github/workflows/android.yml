@@ -14,7 +14,7 @@ jobs:
     - name: Build with Buildozer Docker
       run: |
         export BUILDOZER_ALLOW_INSTALL_AS_ROOT=1
-        docker run --rm -v ${{ github.workspace }}:/workdir -w /workdir kivy/buildozer:latest android debug
+        docker run --rm -v ${{ github.workspace }}:/workdir -w /workdir kivy/buildozer:latest android debug -v
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
@@ -22,10 +22,3 @@ jobs:
         name: esp32app-apk
         path: bin/*.apk
         
-
-
-      - name: Build with Buildozer Docker
-        run: |
-          export BUILDOZER_ALLOW_INSTALL_AS_ROOT=1
-          docker run --rm -v ${{ github.workspace }}:/workdir -w /workdir kivy/buildozer:latest android debug -v
-          
